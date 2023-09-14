@@ -1,5 +1,8 @@
 const http = require('http');
 const fs = require('fs');
+//const str_helpers = require("./strings_helper"); //destructuring const { upper } = ... puxa só uma
+const createLink = require("./createLink");
+
 require('dotenv').config({ path: '.env'}); //npm install dotenv
 
 if (process.argv.length < 3) {
@@ -11,16 +14,26 @@ const dir = process.argv[2];
 
 const server = http.createServer((request, response) => {
     response.writeHead(200, { "Content-Type": "text/html;charset=utf-8"});
-    fs.readdir(dir, (err, files) => { //Callback é sincrono, já o readdir, não
-        if (err)
-          throw new Error(err);
-        else {
-          files.forEach(file => {
-            response.write(`${file} <br>`);
+    if(request.url === "/"){
+        fs.readdir(dir, (err, files) => { //Callback é sincrono, já o readdir, não
+            if (err) throw new Error(err);
+            else {
+                files.forEach(file => {
+                response.write(createLink.createLink(dir,file));
+            })
+            response.end();
+            }
         })
-        response.end();
-        }
-    })
+    } else if (request.url.startsWith("/favicon")){
+        response.end("favicon");
+    } else {
+        fs.readFile(`.${request.url}`, "utf-8", (err, content) => {
+            if(err) throw new Error(err);
+            response.write(createLink.createReturn());
+            response.end(content);
+        });
+        //response.end(request.url);
+    }
 })
 
 server.listen(PORT, () => {
