@@ -1,9 +1,11 @@
-const http = require('http');
-const fs = require('fs');
+import * as http  from 'http';
+import * as fs from 'fs';
 //const str_helpers = require("./strings_helper"); //destructuring const { upper } = ... puxa só uma
-const createLink = require("./createLink");
+//const createLink = require("./createLink");
+import { createLink, createReturn } from './createLink.js';
 
-require('dotenv').config({ path: '.env'}); //npm install dotenv
+import 'dotenv/config'
+//require('dotenv').config({ path: '.env'}); //npm install dotenv
 
 if (process.argv.length < 3) {
     throw new Error("invalido");
@@ -19,7 +21,7 @@ const server = http.createServer((request, response) => {
             if (err) throw new Error(err);
             else {
                 files.forEach(file => {
-                response.write(createLink.createLink(dir,file));
+                response.write(createLink(dir,file));
             })
             response.end();
             }
@@ -29,7 +31,7 @@ const server = http.createServer((request, response) => {
     } else {
         fs.readFile(`.${request.url}`, "utf-8", (err, content) => {
             if(err) throw new Error(err);
-            response.write(createLink.createReturn());
+            response.write(createReturn());
             response.end(content);
         });
         //response.end(request.url);
