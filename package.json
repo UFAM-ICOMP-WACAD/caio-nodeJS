@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch --no-warnings exerc01.js",
-    "start:prod": "node index.js"
+    "start": "node node/exerc1-2-3.js ./public",
+    "start:prod": "npx nodemon node/exerc01.js ./public"
   },
   "keywords": [],
   "author": "",
