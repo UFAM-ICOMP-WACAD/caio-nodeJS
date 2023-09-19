@@ -20,6 +20,7 @@ const server = http.createServer((request, response) => {
         fs.readdir(dir, (err, files) => { //Callback é sincrono, já o readdir, não
             if (err) throw new Error(err);
             else {
+                console.log(dir);
                 files.forEach(file => {
                 response.write(createLink(dir,file));
             })
