@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node node/exerc1-2-3.js ./public",
-    "start:prod": "npx nodemon node/exerc01.js ./public"
+    "start:prod": "npx nodemon node/exerc1-2-3.js ./public"
   },
   "keywords": [],
   "author": "",

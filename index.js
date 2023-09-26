@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 
+//Treinando promise e async await
 function readFile(path) {
     return new Promise((resolve, reject) => {
         fs.readFile(path, "utf-8", (err, data) =>{

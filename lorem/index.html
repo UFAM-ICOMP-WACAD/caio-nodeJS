@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>GERADOR DE LOREM IPSUM!</h1>
+    <form action="">
+        <label for="parag">Parágrafos: </label>
+        <input type="text" name="parag" id="parag">
+        <button>Gerar</button>
+    </form>
+    <div id="result">
+
+    </div>
+
+    <script src="./loremGenerator.js"></script>
+    <script>
+        const button = document.querySelector("button");
+        button.addEventListener("click", generateLorem);
+    </script>
+</body>
+</html>
